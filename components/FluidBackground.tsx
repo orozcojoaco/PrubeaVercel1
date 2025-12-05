@@ -53,13 +53,14 @@ const StarField = () => {
 
 const FluidBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617]">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-[#082f49] via-[#0369a1] to-[#0c4a6e]">
+      {/* Background set to Sky 950 -> Sky 700 -> Sky 900 for "Celeste Oscuro" effect */}
       
       <StarField />
 
-      {/* Blob 1: Gold/Bronze - Institutional Achievement */}
+      {/* Blob 1: Gold - Institutional Achievement (kept for contrast) */}
       <motion.div
-        className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#fbbf24] rounded-full mix-blend-screen filter blur-[60px] opacity-20 will-change-transform"
+        className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#fbbf24] rounded-full mix-blend-screen filter blur-[60px] opacity-15 will-change-transform"
         animate={{
           x: [0, 50, -25, 0],
           y: [0, -25, 25, 0],
@@ -72,9 +73,9 @@ const FluidBackground: React.FC = () => {
         style={{ transform: 'translateZ(0)' }}
       />
 
-      {/* Blob 2: Sky Blue - Academic Clarity */}
+      {/* Blob 2: Cyan/Sky Blue - Academic Clarity (Enhanced) */}
       <motion.div
-        className="absolute top-[20%] right-[-20%] w-[100vw] h-[80vw] bg-[#38bdf8] rounded-full mix-blend-screen filter blur-[60px] opacity-15 will-change-transform"
+        className="absolute top-[20%] right-[-20%] w-[100vw] h-[80vw] bg-[#0ea5e9] rounded-full mix-blend-screen filter blur-[60px] opacity-20 will-change-transform"
         animate={{
           x: [0, -50, 25, 0],
           y: [0, 50, -25, 0],
@@ -87,9 +88,9 @@ const FluidBackground: React.FC = () => {
         style={{ transform: 'translateZ(0)' }}
       />
 
-      {/* Blob 3: Slate/Silver - Architecture/Structure */}
+      {/* Blob 3: Deep Blue - Depth */}
       <motion.div
-        className="absolute bottom-[-20%] left-[20%] w-[80vw] h-[80vw] bg-[#94a3b8] rounded-full mix-blend-screen filter blur-[60px] opacity-15 will-change-transform"
+        className="absolute bottom-[-20%] left-[20%] w-[80vw] h-[80vw] bg-[#1e3a8a] rounded-full mix-blend-screen filter blur-[60px] opacity-25 will-change-transform"
         animate={{
           x: [0, 75, -75, 0],
           y: [0, -50, 50, 0],
@@ -106,7 +107,7 @@ const FluidBackground: React.FC = () => {
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none"></div>
       
       {/* Vignette */}
-      <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/10 to-black/70 pointer-events-none" />
+      <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/10 to-black/60 pointer-events-none" />
     </div>
   );
 };

@@ -14,14 +14,14 @@ import NewsCard from './components/ArtistCard';
 import AIChat from './components/AIChat';
 import { NewsItem, Career } from './types';
 
-// Dummy Data for News (ex-Lineup)
+// Dummy Data for News (ex-Lineup) with NEW IMAGES
 const NEWS_ITEMS: NewsItem[] = [
   { 
     id: '1', 
     title: 'Avance en Vacunas', 
     category: 'Medicina & Ciencia', 
     date: 'OCT 2025', 
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1584036561566-b45238f2e121?q=80&w=1000&auto=format&fit=crop',
     description: 'Investigadores de la Facultad de Medicina desarrollan un nuevo vector viral para inmunización rápida, reconocido internacionalmente por la OMS.'
   },
   { 
@@ -29,7 +29,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: 'Premio Pritzker Estudiantil', 
     category: 'FADU - Arquitectura', 
     date: 'SEP 2025', 
-    image: 'https://images.unsplash.com/photo-1486744360400-054563a3c10b?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1000&auto=format&fit=crop',
     description: 'Estudiante de último año de la FADU recibe mención honorífica global por su diseño de viviendas sostenibles de bajo costo para zonas urbanas.'
   },
   { 
@@ -37,7 +37,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: 'Sátelite UBA-2', 
     category: 'Ingeniería', 
     date: 'AGO 2025', 
-    image: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?q=80&w=1000&auto=format&fit=crop',
     description: 'El departamento de Ingeniería Aeroespacial lanza con éxito el segundo nanosatélite diseñado y construido íntegramente en los laboratorios de Paseo Colón.'
   },
   { 
@@ -45,7 +45,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: 'Litigio Internacional', 
     category: 'Derecho', 
     date: 'JUL 2025', 
-    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1000&auto=format&fit=crop',
     description: 'El equipo de la UBA se consagra campeón mundial en la competencia de alegatos de derechos humanos en Ginebra, superando a Harvard y Oxford.'
   },
   { 
@@ -53,7 +53,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: 'IA en Económicas', 
     category: 'Ciencias Económicas', 
     date: 'JUN 2025', 
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
     description: 'Nuevo paper de investigación sobre modelos predictivos de inflación utilizando redes neuronales es publicado en el Quarterly Journal of Economics.'
   },
   { 
@@ -61,12 +61,12 @@ const NEWS_ITEMS: NewsItem[] = [
     title: 'Descubrimiento Paleontológico', 
     category: 'Exactas', 
     date: 'MAY 2025', 
-    image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1000&auto=format&fit=crop',
     description: 'Expedición de Exactas halla restos de un nuevo titanosaurio en la Patagonia, reescribiendo la historia del Cretácico en la región.'
   },
 ];
 
-// Data for Careers (ex-Tickets)
+// Data for Careers (ex-Tickets) with NEW IMAGES
 const CAREERS: Career[] = [
   { 
     id: 'c1', 
@@ -75,7 +75,7 @@ const CAREERS: Career[] = [
     duration: '6 Años + Residencia', 
     color: 'white', 
     description: 'Formación de excelencia en salud humana, con prácticas en los hospitales universitarios más importantes de la región. Un compromiso con la vida y la ciencia.',
-    image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop',
     features: [
       { icon: Microscope, title: 'Investigación', desc: 'Acceso a laboratorios de punta.' },
       { icon: MapPin, title: 'Red Hospitalaria', desc: 'Prácticas en Hospital de Clínicas.' },
@@ -89,7 +89,7 @@ const CAREERS: Career[] = [
     duration: '5 Años + CBC', 
     color: 'teal', 
     description: 'Donde la creatividad encuentra la técnica. Diseña el futuro de las ciudades en un entorno que fomenta la innovación proyectual y la sustentabilidad.',
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1565514020176-db7159f518fa?q=80&w=1000&auto=format&fit=crop',
     features: [
       { icon: PenTool, title: 'Taller Vertical', desc: 'Metodología única de enseñanza.' },
       { icon: Globe, title: 'Urbanismo', desc: 'Proyectos de escala real.' },
@@ -103,7 +103,7 @@ const CAREERS: Career[] = [
     duration: '5 Años + CBC', 
     color: 'periwinkle', 
     description: 'Desarrolla soluciones tecnológicas para problemas complejos. Desde ingeniería civil hasta informática y aeroespacial, construye el motor productivo del país.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=1000&auto=format&fit=crop',
     features: [
       { icon: Zap, title: 'Innovación', desc: 'Proyectos con industria.' },
       { icon: Microscope, title: 'Tecnología', desc: 'Laboratorios de robótica e IA.' },
@@ -221,7 +221,7 @@ const App: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-30 bg-[#0f172a]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 z-30 bg-[#075985]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden"
           >
             {[
               { label: 'Destacados', id: 'news' },
@@ -342,7 +342,7 @@ const App: React.FC = () => {
       </section>
 
       {/* CAREERS SECTION (Ex-Tickets, moved up) */}
-      <section id="careers" className="relative z-10 py-20 md:py-32 px-4 md:px-6 bg-black/30 backdrop-blur-lg">
+      <section id="careers" className="relative z-10 py-20 md:py-32 px-4 md:px-6 bg-[#0c4a6e]/30 backdrop-blur-lg">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-20">
              <h2 className="text-5xl md:text-9xl font-heading font-bold opacity-10 text-white">
@@ -399,7 +399,7 @@ const App: React.FC = () => {
       </section>
 
       {/* SUMMARY / EXPERIENCE SECTION (Ex-Experience, content dynamic based on selection) */}
-      <section id="summary" className="relative z-10 py-20 md:py-32 bg-black/20 backdrop-blur-sm border-t border-white/10 overflow-hidden min-h-[800px] flex items-center">
+      <section id="summary" className="relative z-10 py-20 md:py-32 bg-[#0c4a6e]/40 backdrop-blur-sm border-t border-white/10 overflow-hidden min-h-[800px] flex items-center">
         {/* Decorative blurred circle */}
         <div className="absolute top-1/2 right-[-20%] w-[50vw] h-[50vw] bg-[#38bdf8]/20 rounded-full blur-[60px] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0)' }} />
 
@@ -449,7 +449,7 @@ const App: React.FC = () => {
                       transition={{ duration: 0.8 }}
                       className="w-full h-full object-cover rounded-3xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700"
                    />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent rounded-3xl pointer-events-none" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#0c4a6e]/80 via-transparent to-transparent rounded-3xl pointer-events-none" />
                    <div className="absolute bottom-8 left-8">
                       <p className="text-white/80 font-mono text-sm uppercase tracking-widest mb-2">Duración Estimada</p>
                       <p className="text-4xl md:text-5xl font-heading font-bold text-white">{selectedCareerData.duration}</p>
@@ -475,7 +475,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      <footer className="relative z-10 border-t border-white/10 py-12 md:py-16 bg-[#020617]/90 backdrop-blur-xl">
+      <footer className="relative z-10 border-t border-white/10 py-12 md:py-16 bg-[#082f49]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div>
              <div className="font-heading text-3xl md:text-4xl font-bold tracking-tighter mb-4 text-white">UBA</div>
@@ -513,7 +513,7 @@ const App: React.FC = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl bg-[#1e293b] border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl shadow-[#fbbf24]/5 group/modal"
+              className="relative w-full max-w-5xl bg-[#0c4a6e] border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl shadow-[#fbbf24]/5 group/modal"
             >
               {/* Close Button */}
               <button
@@ -557,7 +557,7 @@ const App: React.FC = () => {
                     className="absolute inset-0 w-full h-full object-cover grayscale"
                   />
                 </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent md:bg-gradient-to-r" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c4a6e] via-transparent to-transparent md:bg-gradient-to-r" />
               </div>
 
               {/* Content Side */}
