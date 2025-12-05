@@ -12,7 +12,7 @@ let chatSession: Chat | null = null;
 export const initializeChat = (): Chat => {
   if (chatSession) return chatSession;
 
-  const ai = new GoogleGenAI({ apiKey: API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   
   chatSession = ai.chats.create({
     model: 'gemini-2.5-flash',
