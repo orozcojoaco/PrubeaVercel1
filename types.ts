@@ -6,22 +6,29 @@
 
 export interface NewsItem {
   id: string;
-  title: string; // Was name
-  category: string; // Was genre
+  title: string;
+  category: string;
   image: string;
-  date: string; // Was day
+  date: string;
   description: string;
 }
 
 export interface Career {
   id: string;
   name: string;
-  faculty: string;
-  duration: string;
-  color: string;
   description: string;
-  features: { icon: any; title: string; desc: string }[];
+  differential: string; // "Qué es de diferente a las demás"
   image: string;
+  duration?: string;
+}
+
+export interface Faculty {
+  id: string;
+  name: string;
+  shortName?: string;
+  image: string;
+  description: string;
+  careers: Career[];
 }
 
 export interface ChatMessage {
@@ -33,6 +40,5 @@ export interface ChatMessage {
 export enum Section {
   HERO = 'hero',
   NEWS = 'news',
-  CAREERS = 'careers',
-  SUMMARY = 'summary',
+  FACULTIES = 'faculties',
 }

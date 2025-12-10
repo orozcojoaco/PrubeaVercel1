@@ -6,15 +6,16 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { BookOpen, Globe, Zap, Microscope, MapPin, Menu, X, Calendar, ChevronLeft, ChevronRight, GraduationCap, Award, PenTool } from 'lucide-react';
+import { Menu, X, Calendar, ChevronLeft, ChevronRight, GraduationCap, MapPin, ArrowRight, BookOpen, ArrowUpRight } from 'lucide-react';
 import FluidBackground from './components/FluidBackground';
 import GradientText from './components/GlitchText';
 import CustomCursor from './components/CustomCursor';
 import NewsCard from './components/ArtistCard';
 import AIChat from './components/AIChat';
-import { NewsItem, Career } from './types';
+import { NewsItem, Faculty } from './types';
 
-// Dummy Data for News (ex-Lineup) with NEW IMAGES
+// --- DATA ---
+
 const NEWS_ITEMS: NewsItem[] = [
   { 
     id: '1', 
@@ -66,51 +67,322 @@ const NEWS_ITEMS: NewsItem[] = [
   },
 ];
 
-// Data for Careers (ex-Tickets) with NEW IMAGES
-const CAREERS: Career[] = [
-  { 
-    id: 'c1', 
-    name: 'Medicina', 
-    faculty: 'Facultad de Ciencias Médicas',
-    duration: '6 Años + Residencia', 
-    color: 'white', 
-    description: 'Formación de excelencia en salud humana, con prácticas en los hospitales universitarios más importantes de la región. Un compromiso con la vida y la ciencia.',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop',
-    features: [
-      { icon: Microscope, title: 'Investigación', desc: 'Acceso a laboratorios de punta.' },
-      { icon: MapPin, title: 'Red Hospitalaria', desc: 'Prácticas en Hospital de Clínicas.' },
-      { icon: Globe, title: 'Impacto Social', desc: 'Programas de salud comunitaria.' }
+const FACULTIES: Faculty[] = [
+  {
+    id: 'agronomia',
+    name: 'Facultad de Agronomía',
+    shortName: 'FAUBA',
+    image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1000&auto=format&fit=crop',
+    description: 'Ciencia y tecnología para la producción agropecuaria sostenible.',
+    careers: [
+      {
+        id: 'ing-agronimica',
+        name: 'Ingeniería Agronómica',
+        description: 'Gestión integral de sistemas de producción agropecuaria.',
+        differential: 'Enfoque único en sustentabilidad y biotecnología aplicada al campo argentino.',
+        image: 'https://images.unsplash.com/photo-1625246333195-58197bd47d26?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'paisaje',
+        name: 'Lic. en Diseño del Paisaje',
+        description: 'Planificación de espacios verdes urbanos y rurales.',
+        differential: 'Combina conocimientos biológicos profundos con diseño arquitectónico.',
+        image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1000&auto=format&fit=crop',
+        duration: '4 años'
+      }
     ]
   },
-  { 
-    id: 'c2', 
-    name: 'Arquitectura', 
-    faculty: 'FADU',
-    duration: '5 Años + CBC', 
-    color: 'teal', 
-    description: 'Donde la creatividad encuentra la técnica. Diseña el futuro de las ciudades en un entorno que fomenta la innovación proyectual y la sustentabilidad.',
-    image: 'https://images.unsplash.com/photo-1565514020176-db7159f518fa?q=80&w=1000&auto=format&fit=crop',
-    features: [
-      { icon: PenTool, title: 'Taller Vertical', desc: 'Metodología única de enseñanza.' },
-      { icon: Globe, title: 'Urbanismo', desc: 'Proyectos de escala real.' },
-      { icon: Award, title: 'Prestigio', desc: 'Reconocimiento internacional.' }
+  {
+    id: 'fadu',
+    name: 'Facultad de Arquitectura, Diseño y Urbanismo',
+    shortName: 'FADU',
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
+    description: 'El centro de diseño más importante de Latinoamérica.',
+    careers: [
+      {
+        id: 'arquitectura',
+        name: 'Arquitectura',
+        description: 'Proyección y construcción de espacios habitables.',
+        differential: 'Formación proyectual intensiva en talleres verticales con diversidad de cátedras.',
+        image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1000&auto=format&fit=crop',
+        duration: '6 años'
+      },
+      {
+        id: 'dg',
+        name: 'Diseño Gráfico',
+        description: 'Comunicación visual estratégica.',
+        differential: 'Fuerte énfasis en la tipografía y la función social del diseño.',
+        image: 'https://images.unsplash.com/photo-1626785774573-4b7993143d2d?q=80&w=1000&auto=format&fit=crop',
+        duration: '4 años'
+      },
+      {
+        id: 'di',
+        name: 'Diseño de Indumentaria',
+        description: 'Creación de moda y textiles.',
+        differential: 'Perspectiva conceptual y artística que va más allá de la tendencia comercial.',
+        image: 'https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1000&auto=format&fit=crop',
+        duration: '4 años'
+      }
     ]
   },
-  { 
-    id: 'c3', 
-    name: 'Ingeniería', 
-    faculty: 'FIUBA',
-    duration: '5 Años + CBC', 
-    color: 'periwinkle', 
-    description: 'Desarrolla soluciones tecnológicas para problemas complejos. Desde ingeniería civil hasta informática y aeroespacial, construye el motor productivo del país.',
-    image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=1000&auto=format&fit=crop',
-    features: [
-      { icon: Zap, title: 'Innovación', desc: 'Proyectos con industria.' },
-      { icon: Microscope, title: 'Tecnología', desc: 'Laboratorios de robótica e IA.' },
-      { icon: Globe, title: 'Conexión Global', desc: 'Intercambios con el mundo.' }
+  {
+    id: 'economicas',
+    name: 'Facultad de Ciencias Económicas',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop',
+    description: 'Liderazgo en gestión, economía y sistemas de información.',
+    careers: [
+      {
+        id: 'contador',
+        name: 'Contador Público',
+        description: 'Expertos en sistemas contables y tributarios.',
+        differential: 'Formación jurídica y técnica superior reconocida en todo el Mercosur.',
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'administracion',
+        name: 'Lic. en Administración',
+        description: 'Gestión y dirección de organizaciones.',
+        differential: 'Enfoque estratégico integral para liderar tanto PyMES como multinacionales.',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
     ]
   },
+  {
+    id: 'exactas',
+    name: 'Facultad de Ciencias Exactas y Naturales',
+    shortName: 'Exactas',
+    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop',
+    description: 'La cuna de la ciencia argentina.',
+    careers: [
+      {
+        id: 'biologia',
+        name: 'Lic. en Ciencias Biológicas',
+        description: 'Estudio de la vida en todas sus escalas.',
+        differential: 'Acceso directo a institutos de investigación del CONICET desde el grado.',
+        image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1000&auto=format&fit=crop',
+        duration: '6 años'
+      },
+      {
+        id: 'computacion',
+        name: 'Lic. en Cs. de la Computación',
+        description: 'Fundamentos teóricos y desarrollo de software.',
+        differential: 'Profundidad matemática y algorítmica superior a ingenierías tradicionales.',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  },
+  {
+    id: 'sociales',
+    name: 'Facultad de Ciencias Sociales',
+    image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=1000&auto=format&fit=crop',
+    description: 'Análisis crítico de la sociedad contemporánea.',
+    careers: [
+      {
+        id: 'sociologia',
+        name: 'Sociología',
+        description: 'Estudio de los fenómenos colectivos.',
+        differential: 'Tradición de pensamiento crítico reconocida mundialmente.',
+        image: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'comunicacion',
+        name: 'Ciencias de la Comunicación',
+        description: 'Medios, cultura y procesos de sentido.',
+        differential: 'Abordaje transdisciplinario que une política, cultura y tecnología.',
+        image: 'https://images.unsplash.com/photo-1534274988754-874fa03565a9?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  },
+  {
+    id: 'veterinarias',
+    name: 'Facultad de Ciencias Veterinarias',
+    image: 'https://images.unsplash.com/photo-1628009339081-8a30358b19fd?q=80&w=1000&auto=format&fit=crop',
+    description: 'Salud animal y salud pública.',
+    careers: [
+      {
+        id: 'veterinaria',
+        name: 'Veterinaria',
+        description: 'Medicina preventiva y curativa de animales.',
+        differential: 'Hospital escuela propio con atención de alta complejidad las 24hs.',
+        image: 'https://images.unsplash.com/photo-1599443015574-be5fe8a05783?q=80&w=1000&auto=format&fit=crop',
+        duration: '6 años'
+      }
+    ]
+  },
+  {
+    id: 'derecho',
+    name: 'Facultad de Derecho',
+    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1000&auto=format&fit=crop',
+    description: 'Formación jurídica de excelencia en un edificio histórico.',
+    careers: [
+      {
+        id: 'abogacia',
+        name: 'Abogacía',
+        description: 'Defensa de derechos y asesoramiento legal.',
+        differential: 'Orientaciones especializadas únicas y práctica profesional supervisada intensiva.',
+        image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'traductorado',
+        name: 'Traductorado Público',
+        description: 'Traducción legal y técnica.',
+        differential: 'Única carrera universitaria que habilita para la firma de documentos públicos.',
+        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000&auto=format&fit=crop',
+        duration: '4 años'
+      }
+    ]
+  },
+  {
+    id: 'farmacia',
+    name: 'Facultad de Farmacia y Bioquímica',
+    shortName: 'FFyB',
+    image: 'https://images.unsplash.com/photo-1614935151029-25b51606e6a5?q=80&w=1000&auto=format&fit=crop',
+    description: 'Ciencia aplicada a la salud y la industria.',
+    careers: [
+      {
+        id: 'farmacia-carrera',
+        name: 'Farmacia',
+        description: 'Diseño, producción y dispensa de medicamentos.',
+        differential: 'Fuerte base industrial y hospitalaria, no solo comercial.',
+        image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'bioquimica',
+        name: 'Bioquímica',
+        description: 'Análisis clínicos y bromatológicos.',
+        differential: 'Rol central en el equipo de salud con incumbencias exclusivas.',
+        image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  },
+  {
+    id: 'filo',
+    name: 'Facultad de Filosofía y Letras',
+    shortName: 'Filo',
+    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=1000&auto=format&fit=crop',
+    description: 'Humanidades, artes y pensamiento.',
+    careers: [
+      {
+        id: 'letras',
+        name: 'Letras',
+        description: 'Literatura, lingüística y filología.',
+        differential: 'Formación teórica rigurosa con grandes maestros de la crítica literaria.',
+        image: 'https://images.unsplash.com/photo-1463320726281-696a485928c7?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'historia',
+        name: 'Historia',
+        description: 'Investigación y docencia del pasado.',
+        differential: 'Foco en historia argentina y latinoamericana con perspectiva revisionista.',
+        image: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  },
+  {
+    id: 'ingenieria',
+    name: 'Facultad de Ingeniería',
+    shortName: 'FIUBA',
+    image: 'https://images.unsplash.com/photo-1581094794329-cd109c0e6338?q=80&w=1000&auto=format&fit=crop',
+    description: 'Ingeniería al servicio del desarrollo nacional.',
+    careers: [
+      {
+        id: 'civil',
+        name: 'Ingeniería Civil',
+        description: 'Infraestructura, puentes y edificios.',
+        differential: 'Tradición centenaria en las obras más importantes del país.',
+        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop',
+        duration: '6 años'
+      },
+      {
+        id: 'informatica',
+        name: 'Ingeniería en Informática',
+        description: 'Sistemas complejos y software.',
+        differential: 'Perfil gerencial y técnico, preparado para dirigir proyectos de gran escala.',
+        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  },
+  {
+    id: 'odontologia',
+    name: 'Facultad de Odontología',
+    shortName: 'FOUBA',
+    image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1000&auto=format&fit=crop',
+    description: 'Tecnología de vanguardia en salud bucal.',
+    careers: [
+      {
+        id: 'odonto',
+        name: 'Odontología',
+        description: 'Prevención, diagnóstico y tratamiento bucal.',
+        differential: 'Prácticas clínicas intensivas desde los primeros años con equipamiento de última generación.',
+        image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  },
+  {
+    id: 'psicologia',
+    name: 'Facultad de Psicología',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1000&auto=format&fit=crop',
+    description: 'Referente mundial en psicoanálisis y salud mental.',
+    careers: [
+      {
+        id: 'psico',
+        name: 'Lic. en Psicología',
+        description: 'Salud mental, clínica y comunitaria.',
+        differential: 'Capital mundial del psicoanálisis, con una formación clínica incomparable.',
+        image: 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      },
+      {
+        id: 'musico',
+        name: 'Musicoterapia',
+        description: 'Uso clínico de la música.',
+        differential: 'Pionera en Latinoamérica en el abordaje terapéutico a través del arte.',
+        image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop',
+        duration: '4 años'
+      }
+    ]
+  },
+  {
+    id: 'medicina',
+    name: 'Facultad de Ciencias Médicas',
+    shortName: 'FMed',
+    image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1000&auto=format&fit=crop',
+    description: 'Excelencia médica y hospitalaria.',
+    careers: [
+      {
+        id: 'med',
+        name: 'Medicina',
+        description: 'Ciencia y arte de curar.',
+        differential: 'Prácticas en la red hospitalaria universitaria más grande de la región (Hospital de Clínicas, Roffo, etc).',
+        image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop',
+        duration: '6 años'
+      },
+      {
+        id: 'kinesio',
+        name: 'Kinesiología y Fisiatría',
+        description: 'Rehabilitación física.',
+        differential: 'Formación integral en terapia intensiva, deportiva y neurológica.',
+        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop',
+        duration: '5 años'
+      }
+    ]
+  }
 ];
+
+// --- APP COMPONENT ---
 
 const App: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -119,30 +391,24 @@ const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   
-  // State for selected career (replaces purchase logic)
-  const [selectedCareerId, setSelectedCareerId] = useState<string | null>(null);
+  // State for Faculty Overlay (The "New Window")
+  const [selectedFaculty, setSelectedFaculty] = useState<Faculty | null>(null);
 
-  const selectedCareerData = CAREERS.find(c => c.id === selectedCareerId);
-
-  // Handle keyboard navigation for news modal
+  // Handle keyboard navigation for news modal & faculty overlay
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedNews) return;
-      if (e.key === 'ArrowLeft') navigateNews('prev');
-      if (e.key === 'ArrowRight') navigateNews('next');
-      if (e.key === 'Escape') setSelectedNews(null);
+      if (selectedNews) {
+        if (e.key === 'ArrowLeft') navigateNews('prev');
+        if (e.key === 'ArrowRight') navigateNews('next');
+        if (e.key === 'Escape') setSelectedNews(null);
+      }
+      if (selectedFaculty) {
+        if (e.key === 'Escape') setSelectedFaculty(null);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedNews]);
-
-  const handleCareerSelect = (careerId: string) => {
-    setSelectedCareerId(careerId);
-    // Smooth scroll to the summary section (formerly Experience)
-    setTimeout(() => {
-        scrollToSection('summary');
-    }, 100);
-  };
+  }, [selectedNews, selectedFaculty]);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
@@ -171,6 +437,15 @@ const App: React.FC = () => {
     setSelectedNews(NEWS_ITEMS[nextIndex]);
   };
   
+  // Lock body scroll when overlay is open
+  useEffect(() => {
+    if (selectedFaculty || selectedNews) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [selectedFaculty, selectedNews]);
+
   return (
     <div className="relative min-h-screen text-white selection:bg-[#fbbf24] selection:text-black cursor-auto md:cursor-none overflow-x-hidden">
       <CustomCursor />
@@ -183,8 +458,8 @@ const App: React.FC = () => {
         
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-10 text-sm font-bold tracking-widest uppercase">
-          {['Destacados', 'Carreras', 'Información'].map((item) => {
-            const sectionId = item === 'Destacados' ? 'news' : item === 'Carreras' ? 'careers' : 'summary';
+          {['Destacados', 'Academia'].map((item) => {
+            const sectionId = item === 'Destacados' ? 'news' : 'faculties';
             return (
                 <button 
                 key={item} 
@@ -225,8 +500,7 @@ const App: React.FC = () => {
           >
             {[
               { label: 'Destacados', id: 'news' },
-              { label: 'Carreras', id: 'careers' },
-              { label: 'Información', id: 'summary' }
+              { label: 'Academia', id: 'faculties' },
             ].map((item) => (
               <button
                 key={item.label}
@@ -242,10 +516,6 @@ const App: React.FC = () => {
             >
               Sitio Oficial
             </button>
-            
-            <div className="absolute bottom-10 flex gap-6">
-               <a href="#" className="text-white/50 hover:text-white transition-colors">Instagram</a>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -341,139 +611,184 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* CAREERS SECTION (Ex-Tickets, moved up) */}
-      <section id="careers" className="relative z-10 py-20 md:py-32 px-4 md:px-6 bg-[#0c4a6e]/30 backdrop-blur-lg">
+      {/* FACULTIES SECTION */}
+      <section id="faculties" className="relative z-10 py-20 md:py-32 px-4 md:px-6 bg-[#0c4a6e]/30 backdrop-blur-lg border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-20">
              <h2 className="text-5xl md:text-9xl font-heading font-bold opacity-10 text-white">
                ACADEMIA
              </h2>
              <p className="text-[#fbbf24] font-mono uppercase tracking-widest -mt-3 md:-mt-8 relative z-10 text-sm md:text-base">
-               Elegí tu camino
+               Facultades y Carreras
              </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {CAREERS.map((career, i) => {
-              const isSelected = selectedCareerId === career.id;
-
-              return (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -10 }}
-                  onClick={() => handleCareerSelect(career.id)}
-                  className={`relative p-8 md:p-10 border border-white/10 backdrop-blur-md flex flex-col min-h-[450px] md:min-h-[550px] transition-all duration-300 cursor-pointer group bg-gradient-to-b from-white/5 to-transparent hover:border-[#fbbf24]/50 will-change-transform ${isSelected ? 'border-[#fbbf24] bg-white/5' : ''}`}
-                  data-hover="true"
-                >
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-[#fbbf24]/50 transition-colors" />
-                  
-                  <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-white group-hover:text-[#fbbf24] transition-colors">{career.name}</h3>
-                    <div className="text-sm font-mono text-gray-400 mb-8 border-b border-white/10 pb-4">
-                      {career.faculty}
-                    </div>
-                    
-                    <ul className="space-y-4 md:space-y-6 text-sm text-gray-300">
-                       <li className="flex items-center gap-3"><GraduationCap className="w-5 h-5 text-[#fbbf24]" /> Grado Universitario</li>
-                       <li className="flex items-center gap-3"><Calendar className="w-5 h-5 text-gray-400" /> {career.duration}</li>
-                       <li className="flex items-center gap-3"><MapPin className="w-5 h-5 text-gray-400" /> Ciudad Universitaria</li>
-                    </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {FACULTIES.map((faculty) => (
+              <motion.div
+                key={faculty.id}
+                layoutId={`faculty-card-${faculty.id}`}
+                onClick={() => setSelectedFaculty(faculty)}
+                whileHover={{ y: -5 }}
+                className="relative h-[300px] cursor-pointer group overflow-hidden border border-white/10 bg-black/40 hover:border-[#fbbf24]/50 transition-colors"
+                data-hover="true"
+              >
+                {/* Image */}
+                <img 
+                  src={faculty.image} 
+                  alt={faculty.name} 
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 p-6 w-full">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-1.5 h-1.5 bg-[#fbbf24] rounded-full" />
+                    <span className="text-xs font-mono text-[#fbbf24] uppercase tracking-wider">{faculty.shortName || 'UBA'}</span>
                   </div>
-                  
-                  <button 
-                    className={`w-full py-4 text-sm font-bold uppercase tracking-[0.2em] border border-white/20 transition-all duration-300 mt-8 group overflow-hidden relative 
-                      ${isSelected 
-                        ? 'bg-[#fbbf24] text-black border-[#fbbf24]' 
-                        : 'text-white hover:bg-white hover:text-black'
-                      }`}
-                  >
-                    <span className="relative z-10">
-                      {isSelected ? 'Seleccionada' : 'Ver Información'}
-                    </span>
-                  </button>
-                </motion.div>
-              );
-            })}
+                  <h3 className="text-xl font-heading font-bold leading-tight text-white group-hover:text-[#38bdf8] transition-colors">
+                    {faculty.name}
+                  </h3>
+                  <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300 text-gray-300">
+                    Ver Carreras <ArrowRight className="w-4 h-4 text-[#fbbf24]" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SUMMARY / EXPERIENCE SECTION (Ex-Experience, content dynamic based on selection) */}
-      <section id="summary" className="relative z-10 py-20 md:py-32 bg-[#0c4a6e]/40 backdrop-blur-sm border-t border-white/10 overflow-hidden min-h-[800px] flex items-center">
-        {/* Decorative blurred circle */}
-        <div className="absolute top-1/2 right-[-20%] w-[50vw] h-[50vw] bg-[#38bdf8]/20 rounded-full blur-[60px] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0)' }} />
-
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative w-full">
-          <AnimatePresence mode="wait">
-            {selectedCareerData ? (
-              <motion.div 
-                key={selectedCareerData.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-center"
+      {/* FACULTY DETAIL OVERLAY ("NEW WINDOW") */}
+      <AnimatePresence>
+        {selectedFaculty && (
+          <motion.div
+            layoutId={`faculty-overlay-${selectedFaculty.id}`}
+            initial={{ opacity: 0, y: '100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[100] bg-[#0c4a6e] overflow-y-auto"
+          >
+            {/* Header / Nav inside Overlay */}
+            <div className="fixed top-0 left-0 right-0 z-[101] flex justify-between items-center p-6 md:p-8 bg-[#0c4a6e]/90 backdrop-blur-md border-b border-white/10">
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={() => setSelectedFaculty(null)}
+                  className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#fbbf24] transition-colors"
+                  data-hover="true"
+                >
+                  <ChevronLeft className="w-5 h-5" /> Volver
+                </button>
+                <div className="h-6 w-px bg-white/20 hidden md:block" />
+                <span className="hidden md:block font-heading font-bold text-white/80">{selectedFaculty.name}</span>
+              </div>
+              <button 
+                onClick={() => setSelectedFaculty(null)}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                data-hover="true"
               >
-                <div className="lg:col-span-5 order-2 lg:order-1">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-2 h-2 bg-[#fbbf24] rounded-full"></span>
-                    <span className="text-[#fbbf24] font-mono tracking-widest text-sm uppercase">Resumen de Carrera</span>
-                  </div>
-                  <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 md:mb-8 leading-tight">
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{selectedCareerData.name}</span>
-                  </h2>
-                  <p className="text-lg md:text-xl text-gray-200 mb-8 md:mb-12 font-light leading-relaxed drop-shadow-md border-l-2 border-[#fbbf24] pl-6">
-                    {selectedCareerData.description}
-                  </p>
-                  
-                  <div className="space-y-6 md:space-y-8">
-                    {selectedCareerData.features.map((feature, i) => (
-                      <div key={i} className="flex items-start gap-6">
-                        <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/5">
-                          <feature.icon className="w-6 h-6 text-[#38bdf8]" />
-                        </div>
-                        <div>
-                          <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 font-heading">{feature.title}</h4>
-                          <p className="text-sm text-gray-300">{feature.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-                <div className="lg:col-span-7 relative h-[400px] md:h-[600px] w-full order-1 lg:order-2">
-                   <motion.img 
-                      src={selectedCareerData.image}
-                      initial={{ scale: 1.1, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.8 }}
-                      className="w-full h-full object-cover rounded-3xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700"
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#0c4a6e]/80 via-transparent to-transparent rounded-3xl pointer-events-none" />
-                   <div className="absolute bottom-8 left-8">
-                      <p className="text-white/80 font-mono text-sm uppercase tracking-widest mb-2">Duración Estimada</p>
-                      <p className="text-4xl md:text-5xl font-heading font-bold text-white">{selectedCareerData.duration}</p>
-                   </div>
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div 
-                key="default"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-center py-20"
-              >
-                 <BookOpen className="w-20 h-20 text-[#fbbf24] mx-auto mb-8 opacity-50" />
-                 <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 text-gray-300">Seleccioná una carrera</h2>
-                 <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                   Explorá nuestra oferta académica en la sección anterior para ver los detalles, planes de estudio y oportunidades de cada facultad.
-                 </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
+            {/* Hero of the Faculty */}
+            <div className="relative h-[50vh] min-h-[400px]">
+              <img 
+                src={selectedFaculty.image} 
+                alt={selectedFaculty.name}
+                className="w-full h-full object-cover grayscale opacity-40" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c4a6e] to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6 md:p-12 max-w-5xl">
+                <motion.span 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="inline-block px-3 py-1 mb-4 border border-[#fbbf24] text-[#fbbf24] text-xs font-mono tracking-widest uppercase rounded-full"
+                >
+                  Facultad
+                </motion.span>
+                <motion.h2 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-4xl md:text-7xl font-heading font-bold mb-4 leading-tight"
+                >
+                  {selectedFaculty.name}
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-xl text-gray-300 max-w-2xl font-light"
+                >
+                  {selectedFaculty.description}
+                </motion.p>
+              </div>
+            </div>
+
+            {/* Careers List */}
+            <div className="max-w-7xl mx-auto px-6 py-20">
+               <div className="flex items-center gap-4 mb-12">
+                 <GraduationCap className="w-8 h-8 text-[#fbbf24]" />
+                 <h3 className="text-3xl font-heading font-bold">Oferta Académica</h3>
+               </div>
+
+               <div className="grid grid-cols-1 gap-12">
+                 {selectedFaculty.careers.map((career, idx) => (
+                   <motion.div
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: idx * 0.1 }}
+                     key={career.id}
+                     className="flex flex-col md:flex-row gap-8 md:gap-12 bg-white/5 border border-white/10 p-6 md:p-8 rounded-2xl hover:bg-white/10 transition-colors group"
+                   >
+                     {/* Career Image */}
+                     <div className="w-full md:w-1/3 h-64 md:h-auto relative rounded-xl overflow-hidden shrink-0">
+                       <img 
+                         src={career.image} 
+                         alt={career.name} 
+                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105"
+                       />
+                       <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded text-xs font-mono text-[#fbbf24] border border-[#fbbf24]/30">
+                         {career.duration}
+                       </div>
+                     </div>
+
+                     {/* Career Info */}
+                     <div className="flex-1 flex flex-col justify-center">
+                       <h4 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-white group-hover:text-[#38bdf8] transition-colors">
+                         {career.name}
+                       </h4>
+                       <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                         {career.description}
+                       </p>
+                       
+                       <div className="bg-[#fbbf24]/10 border border-[#fbbf24]/20 p-5 rounded-xl">
+                         <div className="flex items-start gap-3">
+                           <BookOpen className="w-5 h-5 text-[#fbbf24] mt-1 shrink-0" />
+                           <div>
+                             <h5 className="text-[#fbbf24] font-bold text-sm uppercase tracking-wider mb-1">Diferencial UBA</h5>
+                             <p className="text-sm text-gray-200 italic">"{career.differential}"</p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </motion.div>
+                 ))}
+               </div>
+            </div>
+            
+            {/* Footer inside modal */}
+            <div className="border-t border-white/10 py-12 text-center text-gray-500 text-sm">
+              <p>Universidad de Buenos Aires - {new Date().getFullYear()}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <footer className="relative z-10 border-t border-white/10 py-12 md:py-16 bg-[#082f49]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
