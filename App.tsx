@@ -62,7 +62,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: 'Descubrimiento Paleontológico', 
     category: 'Exactas', 
     date: 'MAY 2025', 
-    image: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=1000&auto=format&fit=crop',
     description: 'Expedición de Exactas halla restos de un nuevo titanosaurio en la Patagonia, reescribiendo la historia del Cretácico en la región.'
   },
 ];
@@ -346,7 +346,7 @@ const FACULTIES: Faculty[] = [
   {
     id: 'veterinarias',
     name: 'Facultad de Ciencias Veterinarias',
-    image: 'https://images.unsplash.com/photo-1629835336041-3b429184511d?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1000&auto=format&fit=crop',
     description: 'Salud animal y salud pública.',
     careers: [
       {
@@ -395,7 +395,7 @@ const FACULTIES: Faculty[] = [
     id: 'farmacia',
     name: 'Facultad de Farmacia y Bioquímica',
     shortName: 'FFyB',
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1000&auto=format&fit=crop',
     description: 'Ciencia aplicada a la salud y la industria.',
     careers: [
       {
@@ -1093,29 +1093,6 @@ const App: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <footer className="relative z-10 border-t border-white/10 py-12 md:py-16 bg-[#082f49]/90 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-          <div>
-             <div className="font-heading text-3xl md:text-4xl font-bold tracking-tighter mb-4 text-white">UBA</div>
-             <div className="flex gap-2 text-xs font-mono text-gray-400">
-               <span>Universidad de Buenos Aires</span>
-             </div>
-          </div>
-          
-          <div className="flex gap-6 md:gap-8 flex-wrap">
-            <a href="https://www.uba.ar" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#fbbf24] font-bold uppercase text-xs tracking-widest transition-colors cursor-pointer" data-hover="true">
-              Sitio Web
-            </a>
-            <a href="#" className="text-gray-400 hover:text-[#fbbf24] font-bold uppercase text-xs tracking-widest transition-colors cursor-pointer" data-hover="true">
-              Instagram
-            </a>
-            <a href="#" className="text-gray-400 hover:text-[#fbbf24] font-bold uppercase text-xs tracking-widest transition-colors cursor-pointer" data-hover="true">
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </footer>
 
       {/* News Detail Modal */}
       <AnimatePresence>
