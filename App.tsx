@@ -80,7 +80,7 @@ const FACULTIES: Faculty[] = [
         name: 'Ingeniería Agronómica',
         description: 'Gestión integral de sistemas de producción agropecuaria.',
         differential: 'Enfoque único en sustentabilidad y biotecnología aplicada al campo argentino.',
-        image: 'https://images.unsplash.com/photo-1625246333195-58197bd47d26?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000&auto=format&fit=crop',
         duration: '5 años'
       },
       {
@@ -137,7 +137,7 @@ const FACULTIES: Faculty[] = [
         name: 'Diseño Gráfico',
         description: 'Comunicación visual estratégica.',
         differential: 'Fuerte énfasis en la tipografía y la función social del diseño.',
-        image: 'https://images.unsplash.com/photo-1626785774573-4b7993143d2d?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop',
         duration: '4 años'
       },
       {
@@ -161,7 +161,7 @@ const FACULTIES: Faculty[] = [
         name: 'Diseño Textil',
         description: 'Desarrollo de superficies y tejidos.',
         differential: 'Manejo técnico avanzado de materiales y procesos industriales.',
-        image: 'https://images.unsplash.com/photo-1598300056393-8dd1a561138b?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1504198458649-3128b932f49e?q=80&w=1000&auto=format&fit=crop',
         duration: '4 años'
       },
       {
@@ -169,7 +169,7 @@ const FACULTIES: Faculty[] = [
         name: 'Diseño de Imagen y Sonido',
         description: 'Realización audiovisual y medios.',
         differential: 'Narrativa cinematográfica combinada con nuevas tecnologías.',
-        image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?q=80&w=1000&auto=format&fit=crop',
         duration: '4 años'
       }
     ]
@@ -201,7 +201,7 @@ const FACULTIES: Faculty[] = [
         name: 'Lic. en Economía',
         description: 'Análisis de mercados y políticas públicas.',
         differential: 'Prestigiosa formación teórica y cuantitativa.',
-        image: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=1000&auto=format&fit=crop',
         duration: '5 años'
       },
       {
@@ -266,7 +266,7 @@ const FACULTIES: Faculty[] = [
         name: 'Lic. en Ciencias Geológicas',
         description: 'Estudio de la Tierra y recursos naturales.',
         differential: 'Viajes de campaña frecuentes a todas las regiones del país.',
-        image: 'https://images.unsplash.com/photo-1629196914168-3a95e5d0824c?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1444491741275-3747c53c99b4?q=80&w=1000&auto=format&fit=crop',
         duration: '6 años'
       },
       {
@@ -330,7 +330,7 @@ const FACULTIES: Faculty[] = [
         name: 'Ciencias de la Comunicación',
         description: 'Medios, cultura y procesos de sentido.',
         differential: 'Abordaje transdisciplinario que une política, cultura y tecnología.',
-        image: 'https://images.unsplash.com/photo-1534274988754-874fa03565a9?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop',
         duration: '5 años'
       },
       {
@@ -444,7 +444,7 @@ const FACULTIES: Faculty[] = [
         name: 'Lic. en Ciencias Antropológicas',
         description: 'Estudio del ser humano y la cultura.',
         differential: 'Trabajo de campo arqueológico y etnográfico único.',
-        image: 'https://images.unsplash.com/photo-1560964645-5296b5092323?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg',
         duration: '5 años'
       },
       {
@@ -509,7 +509,7 @@ const FACULTIES: Faculty[] = [
         name: 'Ingeniería en Alimentos',
         description: 'Procesamiento industrial de alimentos.',
         differential: 'Ingeniería de procesos aplicada a la industria alimenticia.',
-        image: 'https://images.unsplash.com/photo-1581093458791-9f302295e8cd?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1000&auto=format&fit=crop',
         duration: '5 años'
       },
       {
@@ -630,7 +630,7 @@ const FACULTIES: Faculty[] = [
         name: 'Lic. en Fonoaudiología',
         description: 'Comunicación humana y audición.',
         differential: 'Abordaje terapéutico integral del lenguaje y la voz.',
-        image: 'https://images.unsplash.com/photo-1516585427167-18e431cb694f?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1583324113626-70df0f4deaab?q=80&w=1000&auto=format&fit=crop',
         duration: '5 años'
       },
       {
